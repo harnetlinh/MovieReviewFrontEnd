@@ -7,9 +7,9 @@
             hover
             length="5"
             size="20"
-            value="3"
+            :value="review.rating"
         ></v-rating>
-        <v-text-field disabled value="hello">
+        <v-text-field disabled :value="review.comment">
         </v-text-field>
         
     </div>
@@ -17,6 +17,12 @@
 
 <script>
 export default {
+    props: ["review"],
+    data:()=>{
+        return{
+            value:3
+        }
+    }
 
 }
 </script>

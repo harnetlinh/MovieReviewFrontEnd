@@ -3,9 +3,10 @@
     <v-flex xs12 sm6 md4 lg3 v-for="movie in movies" :key="movie.id">
       <v-card hover class="ma-3" min-height="300">
         <v-layout column align-center fill-height class="text-center">
-          <v-img :src="imageURL + movie.backdrop_path"></v-img>
+          
+          <v-img :src="(isIMDB == false)?(imageURL + movie.backdrop_path) : movie.full_imageURL"></v-img>
 
-          <v-card-title class="font-weight-light" @click="test(movie)">{{movie.title || movie.name}}</v-card-title>
+          <v-card-title class="font-weight-light; word-wrap: break-word;" @click="chooseMovie(movie)">{{movie.title || movie.name}}</v-card-title>
           <v-spacer></v-spacer>
 
         </v-layout>
@@ -16,14 +17,14 @@
 
 <script>
   export default {
-    props: ["movies", "imageURL"],
+    props: ["movies", "imageURL", "isIMDB"],
     data() {
       return {};
     },
     methods:{
-      test(movie){
+      chooseMovie(movie){
         this.$store.dispatch('movie/setChoosenMovie', movie)
-        this.$router.push('top-rated-shows')
+        this.$router.push('movie-detail')
       }
     }
   };

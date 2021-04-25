@@ -6,11 +6,12 @@
         @click="drawer = !drawer"
       ></v-app-bar-nav-icon>
       <v-toolbar-title class="text-uppercase white--text">
-        <span class="font-weight-light">HELK</span>
+        <span @click="backToHomePage()" class="font-weight-light" style="cursor:pointer">HELK</span>
         <span>TV</span>
       </v-toolbar-title>
       <v-btn @click="user_info.id !== '' && user_info.id !== null ? logout():login()" style="margin: 40px" color="primary">
-        {{ available_name }}
+        <span v-if="user_info.id !== '' && user_info.id !== null" >{{ user_info.full_name }}</span> 
+        <span v-else > Login </span>
       </v-btn>
       <v-avatar>
         <img
@@ -19,7 +20,7 @@
         />
         <!-- <v-icon v-else dark> mdi-account-circle </v-icon> -->
       </v-avatar>
-      <input v-if="user_info.avatar != '' && user_info.avatar != null" type="text" placeholder="Search" style="color:white; margin-left: 30px; background-color:gray; height: 60%; border-radius:5px">
+      <input v-if="user_info.avatar != '' && user_info.avatar != null" type="text" placeholder="Search" style="color:white; margin-left: 30px; background-color:white; height: 60%; border-radius:5px">
     </v-app-bar>
 
     <v-navigation-drawer app v-model="drawer" color="indigo accent-2">
@@ -35,12 +36,13 @@
           :key="link.route"
           link
           :to="link.route"
+          :disabled="(user_info.id == '' || user_info.id == null) && link.route == '/personal-rating-history'"
         >
-          <v-list-item-icon>
-            <v-icon class="white--text">{{ link.icon }}</v-icon>
+          <v-list-item-icon >
+            <v-icon :class="(user_info.id == '' || user_info.id == null) && link.route == '/personal-rating-history'?'gray--text':'white--text'">{{ link.icon }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title class="white--text">{{
+            <v-list-item-title :class="(user_info.id == '' || user_info.id == null) && link.route == '/personal-rating-history'?'gray--text':'white--text'">{{
               link.text
             }}</v-list-item-title>
           </v-list-item-content>
@@ -78,11 +80,11 @@ export default {
         //   text: "Popular Shows",
         //   route: "/popular-shows",
         // },
-        // {
-        //   icon: "mdi-medal",
-        //   text: "Top Rated Shows",
-        //   route: "/top-rated-shows",
-        // },
+        {
+          icon: "mdi-medal",
+          text: "Personal Rating History",
+          route: "/personal-rating-history",
+        },
         {
           icon: "mdi-information",
           text: "About",
@@ -93,15 +95,12 @@ export default {
   },
   computed: {
     avatar() {
-      console.log(this.$store.getters.avatar);
       return this.$store.getters.avatar;
     },
     user_id() {
-      console.log(this.$store.getters.id);
       return this.$store.getters.id;
     },
     full_name() {
-      console.log(this.$store.getters.full_name);
       return this.$store.getters.full_name;
     },
   },
@@ -110,7 +109,6 @@ export default {
       this.user_info.avatar = newValue;
     },
     user_id(newValue) {
-      console.log("WW " + newValue);
       this.user_info.id = newValue;
     },
     full_name(newValue) {
@@ -129,11 +127,12 @@ export default {
     this.user_info.id = this.$store.getters.id;
     this.user_info.full_name = this.$store.getters.full_name;
     this.user_info.avatar = this.$store.getters.avatar;
-    console.log("dsadas " + this.$store.getters.avatar);
   },
   methods: {
+    backToHomePage(){
+        this.$router.push('/')
+      },
     login() {
-      console.log("OK");
       this.$gapi
         .login()
         .then((res) => {
@@ -142,7 +141,6 @@ export default {
         .catch(() => {});
     },
     logout() {
-      console.log(">>>>");
       this.$store.dispatch("user/removeUserInfo");
     },
   },

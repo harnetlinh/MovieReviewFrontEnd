@@ -18,10 +18,10 @@
               @click="sortBy('popularity')"
             >
               <v-icon left>mdi-account-heart</v-icon>
-              <span class="caption text-lowercase">By popularity</span>
+              <span class="caption text-lowercase">is playing</span>
             </v-btn>
           </template>
-          <span>Sort movies by popularity</span>
+          <span>find movies are playing</span>
         </v-tooltip>
 
         <v-tooltip top>
@@ -34,12 +34,12 @@
               @click="sortBy('vote_average')"
             >
               <v-icon left>mdi-star</v-icon>
-              <span class="caption text-lowercase">By rating</span>
+              <span class="caption text-lowercase">By popular</span>
             </v-btn>
           </template>
-          <span>Sort movies by rating</span>
+          <span>Sort movies by popular</span>
         </v-tooltip>
-        <v-tooltip top>
+        <!-- <v-tooltip top>
           <template v-slot:activator="{on}">
             <v-btn
               v-on="on"
@@ -53,7 +53,7 @@
             </v-btn>
           </template>
           <span>Sort movies by release date</span>
-        </v-tooltip>
+        </v-tooltip> -->
       </div>
     </v-flex>
   </v-layout>

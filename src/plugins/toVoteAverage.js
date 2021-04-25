@@ -1,6 +1,5 @@
 String.prototype.toNumber = function(){
     if((typeof this) == 'string') {
-        console.log("KKKK" + this.search("/"));
         if(this.search("%") != -1){
             return parseInt((parseInt(this.split('%')[0])/100)*100);
         }

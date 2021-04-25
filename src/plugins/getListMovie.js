@@ -25,17 +25,19 @@ function getArrayID(rawArray){
     return result;
 }
 
-export async function getAllFilmInfo(current, number){
+export async function getAllFilmInfo(current = 0, number = 20){
     const arrayID = await getAllID();
+    let result;
     let requestURL = [];
     for (let index = current+1; index <= (current + number); index++) {
         requestURL.push( getFilmInfo(arrayID[index]) );
     }
-    axios.all(requestURL).then(
+    await axios.all(requestURL).then(
         axios.spread((...responses) => {
-            console.log(responses);
+            result = responses;
         })
     ).catch(err=>{
 
     })
+    return result;
 }

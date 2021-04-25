@@ -1,6 +1,8 @@
 
 const state = {
-  choosenMovie:''
+  choosenMovie:'',
+  currentNumber:0,
+  getNumber: 20,
 };
 
 const mutations = {

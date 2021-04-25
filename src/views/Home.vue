@@ -1,7 +1,6 @@
 <template>
   <v-container>
     <v-layout align-center justify-space-around column fill-height wrap class="my-5 text-center">
-      <v-btn @click="test()">test</v-btn>
       <h1
         class="display-3 my-3 font-weight-thin white--text my-5"
       >Rating Movies and Find Your Own Favorite</h1>
@@ -34,22 +33,9 @@ const options = {
       return {};
     },
     methods:{
-      async test(){
-        // axios.request(options).then(function (response) {
-        //   console.log(response.data);
-        //   const x = response.data[0].split("/")
-        //   console.log(x[2]);
-        //   getFilmInfo(x[2]).then((res)=>{
-        //     console.log(res);
-        //   });
-        // }).catch(function (error) {
-        //   console.error(error);
-        // });
-        await getAllFilmInfo(0,10);
-      }
+      
     },
     created(){
-      // this.test();
     }
     
   };
