@@ -1,0 +1,10 @@
+APP_NAME=MovieReviewer
+APP_DEBUG=true
+APP_URL=http://localhost
+
+BASE_API=/api
+CLIENT_ID = 308550789612-jedjabmbfdgrfi53h62skq1bbvqr9dre.apps.googleusercontent.com
+CLIENT_SECRET = DtlXu7RQy-_PuKU0YdffkMmz
+API_KEY =  AIzaSyCphUx80bSGN3C2ssHILuKnUWizSqoQm0c
+VUE_APP_KEY = 3c8c85988b26d4321d492694f1f83b59
+OMDBAPI_API_KEY = 88c4233e

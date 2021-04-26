@@ -208,6 +208,7 @@ export default {
         rating: 0,
         comment: "",
         movie_id: "",
+        movie_name: ""
       },
       sheet: false,
       showExtendContent: "",
@@ -267,6 +268,7 @@ export default {
     submitReview(){
       this.ratingInfo.user_id = this.$store.getters.id;
       this.ratingInfo.movie_id = this.movieFullInfo.data.imdbID;
+      this.ratingInfo.movie_name = this.movieFullInfo.data.Title;
       if(this.ratingInfo.user_id === ''){
         alert("Please Login");
         return;

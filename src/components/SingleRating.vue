@@ -9,7 +9,7 @@
             size="20"
             :value="review.rating"
         ></v-rating>
-        <v-text-field disabled :value="review.comment">
+        <v-text-field disabled :value="review.date + ' : '+ review.comment">
         </v-text-field>
         
     </div>

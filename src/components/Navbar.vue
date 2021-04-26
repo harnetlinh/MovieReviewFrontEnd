@@ -20,7 +20,7 @@
         />
         <!-- <v-icon v-else dark> mdi-account-circle </v-icon> -->
       </v-avatar>
-      <input v-if="user_info.avatar != '' && user_info.avatar != null" type="text" placeholder="Search" style="color:white; margin-left: 30px; background-color:white; height: 60%; border-radius:5px">
+      <input v-model="search_value" v-if="user_info.avatar != '' && user_info.avatar != null" type="text" placeholder="Search" style="color:white; margin-left: 30px; background-color:white; height: 60%; border-radius:5px">
     </v-app-bar>
 
     <v-navigation-drawer app v-model="drawer" color="indigo accent-2">
@@ -56,6 +56,7 @@
 export default {
   data: function () {
     return {
+      search_value:'',
       user_info: {
         avatar: "",
         full_name: "",
@@ -93,6 +94,23 @@ export default {
       ],
     };
   },
+  // axios
+  //         .get(
+  //           "https://api.themoviedb.org/3/search/movie?api_key=" +
+  //             key +
+  //             "&language=en-US&page=" +
+  //             this.page+
+  //             "&query=inception"
+  //         )
+  //         .then(response => {
+  //           // handle success
+  //           //console.log(response);
+  //           this.movies = response.data.results;
+  //         })
+  //         .catch(error => {
+  //           // handle error
+  //           // console.log(error);
+  //         })
   computed: {
     avatar() {
       return this.$store.getters.avatar;
@@ -105,6 +123,9 @@ export default {
     },
   },
   watch: {
+    search_value(newValue){
+
+    },
     avatar(newValue) {
       this.user_info.avatar = newValue;
     },

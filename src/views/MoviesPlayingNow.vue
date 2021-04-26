@@ -57,7 +57,6 @@
         this.isIMDB = true;
       },
       init() {
-        console.log(">>>>>")
         this.movies = [];
         if(this.movies.length > 0){
           this.movies = [];
@@ -109,6 +108,9 @@
       // page: function(page) {
       //   this.init();
       // }
+    },
+    computed:{
+
     },
     created() {
       this.init();
