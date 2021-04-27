@@ -1,19 +1,19 @@
 <template>
   <v-container>
     <v-layout align-center justify-center row fill-height>
-      <v-btn class="mx-5" fab text href="https://github.com/ClaytonMatulich/vue-tv" target="_blank">
-        <v-icon large>mdi-github-circle</v-icon>
+      <v-btn class="mx-5" fab text href="https://www.facebook.com/nat.vennx" target="_blank">
+        <v-icon large>mdi-facebook </v-icon>
       </v-btn>
       <v-btn
         class="mx-5"
         fab
         text
-        href="https://www.linkedin.com/in/claytonmatulich/"
+        href=""
         target="_blank"
       >
         <v-icon large>mdi-linkedin</v-icon>
       </v-btn>
-      <v-btn class="mx-5" fab text href="mailto:clayton@matulich.dev" target="_blank">
+      <v-btn class="mx-5" fab text href="mailto:natuan.298@gmail.com" target="_blank">
         <v-icon large>mdi-at</v-icon>
       </v-btn>
     </v-layout>

@@ -179,6 +179,19 @@
         </v-progress-linear>
       </v-col>
     </v-row>
+    <v-row >
+      <v-col cols="12" sm="12" style="height: 315; width:560;display:inline; scroll-x:auto">
+        <ul class="images">
+  <!-- Inline styles added for demonstration purposes only. -->
+          <div class="scrollmenu">
+            <!-- <iframe v-for="i in 10"  width="560" height="150" src="https://tubitv.com/movies/585469/a-dangerous-man?start=true" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+          </div>
+        </ul>
+
+      </v-col>
+    
+    </v-row>
     <v-bottom-sheet v-model="sheet">
       <v-sheet class="text-center" height="200px">
         <v-btn class="mt-6" text color="red" @click="sheet = !sheet">
@@ -193,6 +206,7 @@
 </template>
 
 <script>
+import {getListURL} from '../plugins/getRalatedVideoURL';
 import {getReviewByMovie, submitReview} from '../apis/review'
 import "../plugins/toVoteAverage";
 import comment from "../components/SingleRating";
@@ -203,6 +217,8 @@ export default {
   },
   data: function () {
     return {
+      myWindow:'',
+      listRelatedMovie:[],
       ratingInfo: {
         user_id: "",
         rating: 0,
@@ -258,6 +274,10 @@ export default {
     }
   },
   methods: {
+    async getListRelatedMovie(){
+      this.listRelatedMovie =  await getListURL({name:this.movieFullInfo.data.Title, gender: this.movieFullInfo.data.Genre});
+      console.log(this.listRelatedMovie);
+    },
     async getAllReviewByMovie(){
       const res = await getReviewByMovie(this.movieFullInfo.data.imdbID)
       this.reviews = res.data;
@@ -297,8 +317,15 @@ export default {
         alert("Success full");
       }
     },
-
+    openWindow: function () {		
+				  this.myWindow = window.open("https://tubitv.com/oz/search/Monster%20Hunter?isKidsMode=false", "myWindow", "width=500,height=300");
+    },
+    
+    closeWindow: function () {		
+			this.myWindow.close();	
+      },
     async getFullInfoMovie() {
+      // this.openWindow();
       const date = new Date(this.choosen_movie.release_date);
       var year = date.getFullYear();
       this.movieFullInfo = await getOneInfo(
@@ -312,7 +339,10 @@ export default {
         this.vote = this.movieFullInfo.data.Ratings[0].Value.toNumber();
       }
       this.getAllReviewByMovie();
-    },
+      // console.log(this.myWindow);
+      // this.closeWindow();
+      // this.getListRelatedMovie();
+    }
   },
 };
 </script>
@@ -323,5 +353,18 @@ export default {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+div.scrollmenu {
+  /* background-color: #333; */
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu iframe {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
 }
 </style>

@@ -9,7 +9,7 @@
 
       <blockquote
         class="blockquote ma-5"
-      >My name is Clayton Matulich. VueTV is my first practice project using Vue JS. It is a movie and tv show discovery website that features a few different criteria and sorting features. Each movie and show is presented with its poster, rating, and synopsis from The Movie Database API.</blockquote>
+      ></blockquote>
     </v-layout>
   </v-container>
 </template>
